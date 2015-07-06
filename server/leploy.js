@@ -40,8 +40,11 @@ function ctx(sock) { //'connection' listener
     // 数据一致化
     var _dataSplit = normalize(data);
     var _main = path.join(cacheName, _dataSplit.shift());
-    for(var i = 0, fileName, fileData; fileName = _dataSplit[i], fileData = _dataSplit[i + 1]; i += 2) {
-      fileName = path.join(cacheName + fileName);
+    console.log(_main);
+    for(var i = 0; _dataSplit[i] ; i += 2) {
+      
+      var fileName = path.join(cacheName + _dataSplit[i]);
+      var fileData = _dataSplit[i + 1];      
       var _temp = path.dirname(fileName);
       
       // console.log(fileName, ":", !fs.existsSync(_temp));
@@ -50,15 +53,13 @@ function ctx(sock) { //'connection' listener
       if (!fs.existsSync(_temp)) { fs.mkdirSync(_temp); }
       
       // 正常写文件
-      fs.writeFile(path.normalize(fileName), fileData, function (e) {
-         if (e) throw e;
-      });
+      fs.writeFileSync(path.normalize(fileName), fileData);
     }
     
     // 进程重启
-    if (child) child.kill();
+    // if (child) child.kill();
     // fork main 重启进程
-    child = child_process.fork(_main);  
+    // child = child_process.fork(_main);  
     data = '';
   });
   sock.on('error', function(e) {if(e){console.error(e);}});

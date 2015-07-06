@@ -10,19 +10,19 @@
  * }
  */
 
-var read = require('fs').readFileSync;
+var read   = require('fs').readFileSync;
 var Socket = require('net').Socket;
 var client = new Socket();
-var fsEc = require('./lib/fs-ergodic.js');
-var join = require('path').join;
-var luan = require('./lib/luan.js');
+var fsEc   = require('./lib/fs-ergodic.js');
+var join   = require('path').join;
+var luan   = require('./lib/luan.js');
 
-var PORT = 10070;
-var HOST = '127.0.0.1';
+var PORT   = 10070;
+var HOST   = '127.0.0.1';
 var _build = '../build';
-var _main = 'server.js';
+var _main  = 'server.js';
 
-var data = '';
+var data   = '';
 var _split = '\n----------------------' + luan(16) + '-----------------------\n';
 
 client.connect(PORT, HOST, function () {

@@ -11,7 +11,18 @@ hehe, ai yoong bu yong.
 ### Server: ###
 on the online server run 
 
-	node server/leploy.js
+	npm install leploy
+	
+edit the setting
+
+	{
+		
+		PORT = listen port;
+		HOST = listen host;
+	}
+	node lepoly.js
+
+the server is runing
 
 **then**
 ### Client ###

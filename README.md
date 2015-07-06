@@ -15,12 +15,14 @@ on the online server run
 	
 edit the setting
 
+
 	{
 		
-		PORT = listen port;
-		HOST = listen host;
+	  PORT = listen port;
+	  HOST = listen host;
 	}
 	node lepoly.js
+
 
 the server is runing
 

@@ -17,7 +17,6 @@ edit the setting
 
 
 	{
-		
 	  PORT = listen port;
 	  HOST = listen host;
 	}

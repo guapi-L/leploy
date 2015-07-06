@@ -1,13 +1,8 @@
 var net = require('net');
 var fs = require('fs');
 var path = require('path');
-<<<<<<< HEAD
-var child_process = require('child_process')
-var child;
-=======
 var child_process = require('child_process');
 var child = null;
->>>>>>> origin/master
 // createServer
 net.createServer(ctx).listen(10070, function() { 
   console.log('server bound');
@@ -24,25 +19,12 @@ function ctx(sock) { //'connection' listener
     fs.mkdirSync(cacheName);  
   }
   sock.on('data', function(d) {
-<<<<<<< HEAD
-    data += d.toString();
-    console.log(data);
-    fs.writeFile(serverFile, data, function (err) {
-      if (err) throw err;
-      // delete require.cache[path.join(__dirname , serverFile)];
-      // require(serverFile);
-      if(child) child.kill();
-      child = child_process.fork(serverFile);
-      data = '';
-    });
-    sock.write('finish');
-=======
+
     data += d.toString();   
     // delete require.cache[path.join(__dirname , serverFile)];
     // require(serverFile);
     
     sock.write('finish');  
->>>>>>> origin/master
   });
   sock.on('end', function() {
     var _split = '\n' + data.split('\n')[1] + '\n';

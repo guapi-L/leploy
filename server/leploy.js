@@ -15,7 +15,6 @@ var HOST = '127.0.0.1';
 var child = null;
 
 var cacheName = './cache_' + new Date().toDateString().split(' ').join('_');
-var serverFile = cacheName + '/server.js';
 var data = '';
 
 

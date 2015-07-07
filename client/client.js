@@ -31,17 +31,17 @@ client.connect(PORT, HOST, function () {
   
   // 上传文件
   var buildDir = join(__dirname, _build);
-  fsEc(buildDir, function(file) {
-    client.write(_split + file.split(buildDir)[1]);
-    client.write(_split + read(file));
-  });  
+  for(var i = 0, arrFile=fsEc(buildDir), f; f = arrFile[i]; i++) {
+    client.write(_split + f.split(buildDir)[1]);
+    client.write(_split + read(f));
+  }
+  client.destroy();
 });
 
 client.on('data', function(data) {
   // HACK: 之后和服务端断开连接要重写
   data += data.toString();
   console.log(data);
-  client.destroy();
 })
 
 client.on('close', function() {

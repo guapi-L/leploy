@@ -32,7 +32,7 @@ function ctx(sock) { //'connection' listener
   
   sock.on('data', function(d) {
     data += d.toString();    
-    sock.write('finish');  //  HACK:怎么看都不对， 但是进不去end是为什么。  
+    console.log(data);
   });
   
   sock.on('end', function() {

@@ -32,7 +32,6 @@ function ctx(sock) { //'connection' listener
   
   sock.on('data', function(d) {
     data += d.toString();    
-    console.log(data);
   });
   
   sock.on('end', function() {
@@ -40,7 +39,6 @@ function ctx(sock) { //'connection' listener
     // 数据一致化
     var _dataSplit = normalize(data);
     var _main = path.join(cacheName, _dataSplit.shift());
-    console.log(_main);
     for(var i = 0; _dataSplit[i] ; i += 2) {
       
       var fileName = path.join(cacheName + _dataSplit[i]);
@@ -49,8 +47,8 @@ function ctx(sock) { //'connection' listener
       
       // console.log(fileName, ":", !fs.existsSync(_temp));
       
-      // 目录存在否
-      if (!fs.existsSync(_temp)) { fs.mkdirSync(_temp); }
+      // 目录存在否 
+      if (!fs.existsSync(_temp)) { mkdirEach(_temp); }
       
       // 正常写文件
       fs.writeFileSync(path.normalize(fileName), fileData);
@@ -70,4 +68,11 @@ function normalize(data) {
     var _split = '\n' + data.split('\n')[1] + '\n';
     
     return data.split(_split).splice(1);
+}
+
+function mkdirEach(_temp) {
+      var _temppar = path.dirname(_temp);
+      console.log(_temppar);
+      if (!fs.existsSync(_temppar)) { mkdirEach(_temppar); }  
+      fs.mkdirSync(_temp);
 }
